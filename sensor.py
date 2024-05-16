@@ -265,13 +265,13 @@ class LD2450BLESensor(CoordinatorEntity[LD2450BLECoordinator], SensorEntity):
             case "target_one_distance":
                 self._attr_native_value = int(math.hypot(getattr(self._device, "target_one_x"), getattr(self._device, "target_one_y")))
             case "target_two_distance":
-                self._attr_native_value = int(math.hypot(getattr(self._device, "target_three_x"), getattr(self._device, "target_two_y")))
+                self._attr_native_value = int(math.hypot(getattr(self._device, "target_two_x"), getattr(self._device, "target_two_y")))
             case "target_three_distance":
                 self._attr_native_value = int(math.hypot(getattr(self._device, "target_three_x"), getattr(self._device, "target_three_y")))
             case "target_one_angle":
                 self._attr_native_value = int(math.degrees(math.atan2(getattr(self._device, "target_one_x"), getattr(self._device, "target_one_y"))))
             case "target_two_angle":
-                self._attr_native_value = int(math.degrees(math.atan2(getattr(self._device, "target_three_x"), getattr(self._device, "target_two_y"))))
+                self._attr_native_value = int(math.degrees(math.atan2(getattr(self._device, "target_two_x"), getattr(self._device, "target_two_y"))))
             case "target_three_angle":
                 self._attr_native_value = int(math.degrees(math.atan2(getattr(self._device, "target_three_x"), getattr(self._device, "target_three_y"))))
             case _:
