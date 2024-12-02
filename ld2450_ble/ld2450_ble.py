@@ -474,11 +474,6 @@ class LD2450BLE:
 
                 #second area
                 area_two_first_vertex_x = int.from_bytes(msg.group("ACK_AREA_TWO")[0:2],"little",signed=True)
-                if area_two_first_vertex_x > 2**15:
-                    area_two_first_vertex_x = area_two_first_vertex_x - 2**15
-                else:
-                    area_two_first_vertex_x = - area_two_first_vertex_x 
-
                 area_two_first_vertex_y = int.from_bytes(msg.group("ACK_AREA_TWO")[2:4],"little",signed=True)
                 area_two_second_vertex_x = int.from_bytes(msg.group("ACK_AREA_TWO")[4:6],"little",signed=True)
                 area_two_second_vertex_y = int.from_bytes(msg.group("ACK_AREA_TWO")[6:8],"little",signed=True)
