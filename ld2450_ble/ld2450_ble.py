@@ -467,79 +467,27 @@ class LD2450BLE:
                 area_mode = int.from_bytes(msg.group("ACK_AREA_MODE"),"little")
 
                 #first area
-                area_one_first_vertex_x = int.from_bytes(msg.group("ACK_AREA_ONE")[0:2],"little")
-                if area_one_first_vertex_x > 2**15:
-                    area_one_first_vertex_x = area_one_first_vertex_x - 2**15
-                else:
-                    area_one_first_vertex_x = - area_one_first_vertex_x 
-
-                area_one_first_vertex_y = int.from_bytes(msg.group("ACK_AREA_ONE")[2:4],"little")
-                if area_one_first_vertex_y > 2**15:
-                    area_one_first_vertex_y = area_one_first_vertex_y - 2**15
-                else:
-                    area_one_first_vertex_y = - area_one_first_vertex_y 
-
-                area_one_second_vertex_x = int.from_bytes(msg.group("ACK_AREA_ONE")[4:6],"little")
-                if area_one_second_vertex_x > 2**15:
-                    area_one_second_vertex_x = area_one_second_vertex_x - 2**15
-                else:
-                    area_one_second_vertex_x = - area_one_second_vertex_x 
-
-                area_one_second_vertex_y = int.from_bytes(msg.group("ACK_AREA_ONE")[6:8],"little")
-                if area_one_second_vertex_y > 2**15:
-                    area_one_second_vertex_y = area_one_second_vertex_y - 2**15
-                else:
-                    area_one_second_vertex_y = - area_one_second_vertex_y 
+                area_one_first_vertex_x = int.from_bytes(msg.group("ACK_AREA_ONE")[0:2],"little",signed=True)
+                area_one_first_vertex_y = int.from_bytes(msg.group("ACK_AREA_ONE")[2:4],"little",signed=True)
+                area_one_second_vertex_x = int.from_bytes(msg.group("ACK_AREA_ONE")[4:6],"little",signed=True)
+                area_one_second_vertex_y = int.from_bytes(msg.group("ACK_AREA_ONE")[6:8],"little",signed=True)
 
                 #second area
-                area_two_first_vertex_x = int.from_bytes(msg.group("ACK_AREA_TWO")[0:2],"little")
+                area_two_first_vertex_x = int.from_bytes(msg.group("ACK_AREA_TWO")[0:2],"little",signed=True)
                 if area_two_first_vertex_x > 2**15:
                     area_two_first_vertex_x = area_two_first_vertex_x - 2**15
                 else:
                     area_two_first_vertex_x = - area_two_first_vertex_x 
 
-                area_two_first_vertex_y = int.from_bytes(msg.group("ACK_AREA_TWO")[2:4],"little")
-                if area_two_first_vertex_y > 2**15:
-                    area_two_first_vertex_y = area_two_first_vertex_y - 2**15
-                else:
-                    area_two_first_vertex_y = - area_two_first_vertex_y 
-
-                area_two_second_vertex_x = int.from_bytes(msg.group("ACK_AREA_TWO")[4:6],"little")
-                if area_two_second_vertex_x > 2**15:
-                    area_two_second_vertex_x = area_two_second_vertex_x - 2**15
-                else:
-                    area_two_second_vertex_x = - area_two_second_vertex_x 
-
-                area_two_second_vertex_y = int.from_bytes(msg.group("ACK_AREA_TWO")[6:8],"little")
-                if area_two_second_vertex_y > 2**15:
-                    area_two_second_vertex_y = area_two_second_vertex_y - 2**15
-                else:
-                    area_two_second_vertex_y = - area_two_second_vertex_y 
+                area_two_first_vertex_y = int.from_bytes(msg.group("ACK_AREA_TWO")[2:4],"little",signed=True)
+                area_two_second_vertex_x = int.from_bytes(msg.group("ACK_AREA_TWO")[4:6],"little",signed=True)
+                area_two_second_vertex_y = int.from_bytes(msg.group("ACK_AREA_TWO")[6:8],"little",signed=True)
 
                 #third area
-                area_three_first_vertex_x = int.from_bytes(msg.group("ACK_AREA_THREE")[0:2],"little")
-                if area_three_first_vertex_x > 2**15:
-                    area_three_first_vertex_x = area_three_first_vertex_x - 2**15
-                else:
-                    area_three_first_vertex_x = - area_three_first_vertex_x 
-
-                area_three_first_vertex_y = int.from_bytes(msg.group("ACK_AREA_THREE")[2:4],"little")
-                if area_three_first_vertex_y > 2**15:
-                    area_three_first_vertex_y = area_three_first_vertex_y - 2**15
-                else:
-                    area_three_first_vertex_y = - area_three_first_vertex_y 
-
-                area_three_second_vertex_x = int.from_bytes(msg.group("ACK_AREA_THREE")[4:6],"little")
-                if area_three_second_vertex_x > 2**15:
-                    area_three_second_vertex_x = area_three_second_vertex_x - 2**15
-                else:
-                    area_three_second_vertex_x = - area_three_second_vertex_x 
-
-                area_three_second_vertex_y = int.from_bytes(msg.group("ACK_AREA_THREE")[6:8],"little")
-                if area_three_second_vertex_y > 2**15:
-                    area_three_second_vertex_y = area_three_second_vertex_y - 2**15
-                else:
-                    area_three_second_vertex_y = - area_three_second_vertex_y 
+                area_three_first_vertex_x = int.from_bytes(msg.group("ACK_AREA_THREE")[0:2],"little",signed=True)
+                area_three_first_vertex_y = int.from_bytes(msg.group("ACK_AREA_THREE")[2:4],"little",signed=True)
+                area_three_second_vertex_x = int.from_bytes(msg.group("ACK_AREA_THREE")[4:6],"little",signed=True)
+                area_three_second_vertex_y = int.from_bytes(msg.group("ACK_AREA_THREE")[6:8],"little",signed=True)
 
                 self._config = LD2450BLEConfig(
                     target_mode = self._config.target_mode,
@@ -844,17 +792,6 @@ class LD2450BLE:
             self._num2hex(area_three_second_vertex_y) +
             CMD_SET_AREA_POST)
         await self._send_command(CMD_DISABLE_CONFIG)
-
-    def _hex2num(self, hexVal: int) -> int:
-        if hexVal > 2**15:
-            return hexVal - 2**15
-        else:
-            return - hexVal
             
     def _num2hex(self, num: int) -> bytes:
-        if num > 0:
-            num = num + 2**15
-            return num.to_bytes(2,"little")
-        else:
-            num = -num
-            return num.to_bytes(2,"little")
+        return num.to_bytes(2, byteorder='little', signed=True)
